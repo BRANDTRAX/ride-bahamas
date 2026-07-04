@@ -204,9 +204,17 @@
             margin-bottom: 20px;
         }
 
+        .desktop-break {
+            display: none;
+        }
+
         @media (min-width: 768px) {
             .form-container h2 {
                 font-size: 28px;
+            }
+
+            .desktop-break {
+                display: inline;
             }
         }
 
@@ -341,6 +349,7 @@
             background-color: #ffffff;
             max-width: 100%;
             margin: 0 auto;
+            scroll-margin-top: 0;
         }
 
         .features-grid-container {
@@ -565,7 +574,7 @@
                     <h1>Coming soon.</h1>
 
                     <div class="form-container">
-                        <h2>We're getting ready to move the islands. Be first to know.</h2>
+                        <h2>We're getting ready to move the islands. <br class="desktop-break">Be first to know.</h2>
 
                         <form id="notifyForm">
                             <div class="form-group">
@@ -596,7 +605,7 @@
                 </div>
             </div>
 
-            <button class="scroll-chevron" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'});" aria-label="Scroll down">
+            <button class="scroll-chevron" onclick="scrollToFeatures()" aria-label="Scroll down">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
@@ -638,9 +647,9 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="https://policies.ride.bs/privacy">Privacy Policy</a>
-                <a href="https://policies.ride.bs/terms">Terms & Conditions</a>
-                <a href="https://policies.ride.bs/cookies">Cookie Policy</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms & Conditions</a>
+                <a href="cookies.html">Cookie Policy</a>
             </div>
 
             <div class="footer-divider"></div>
@@ -656,6 +665,15 @@
     </footer>
 
     <script>
+        // Scroll to top of features section, accounting for sticky header
+        function scrollToFeatures() {
+            const features = document.getElementById('features');
+            const header = document.querySelector('header');
+            const headerHeight = header.offsetHeight;
+            const targetPosition = features.getBoundingClientRect().top + window.scrollY - headerHeight;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+
         // Shrink header logo on scroll
         const header = document.querySelector('header');
         window.addEventListener('scroll', function() {
