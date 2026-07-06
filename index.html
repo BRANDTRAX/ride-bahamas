@@ -88,18 +88,38 @@
         }
 
         .hero-content {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 40px;
             align-items: center;
             position: relative;
             z-index: 10;
         }
 
+        .hero-text {
+            order: 2;
+            width: 100%;
+        }
+
+        .hero-car {
+            order: 1;
+            width: 100%;
+        }
+
         @media (min-width: 768px) {
             .hero-content {
-                grid-template-columns: 1.2fr 0.8fr;
-                max-width: 100%;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .hero-text {
+                order: 1;
+                flex: 1.2;
+            }
+
+            .hero-car {
+                order: 2;
+                flex: 0.8;
             }
         }
 
@@ -228,14 +248,8 @@
         .form-group {
             display: flex;
             gap: 12px;
-            flex-direction: row;
+            flex-direction: column;
             margin-top: 20px;
-        }
-
-        @media (min-width: 480px) {
-            .form-group {
-                flex-direction: row;
-            }
         }
 
         @media (min-width: 768px) {
@@ -428,7 +442,7 @@
             text-align: center;
         }
         .tagline {
-            font-size: 3.5vw;
+            font-size: 2.8vw;
             color: #000000;
             font-weight: 700;
             letter-spacing: 1px;
@@ -439,7 +453,7 @@
 
         @media (max-width: 767px) {
             .tagline {
-                font-size: 6vw;
+                font-size: 5vw;
             }
         }
 
@@ -682,7 +696,7 @@
             </div>
 
             <div class="tagline-section">
-                <p class="tagline">MOVING THE ISLANDS</p>
+                <p class="tagline">moving the islands</p>
             </div>
         </div>
     </section>
