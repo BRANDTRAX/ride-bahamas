@@ -39,6 +39,11 @@
             text-align: center;
         }
 
+        .logo-container a {
+            display: inline-block;
+            line-height: 0;
+        }
+
         .logo {
             width: 160px;
             max-width: 40vw;
@@ -47,19 +52,17 @@
             transition: width 0.3s ease;
         }
 
-        @media (min-width: 768px) {
-            .logo {
-                width: 200px;
-            }
-        }
-
         header.scrolled .logo {
             width: 100px;
         }
 
         @media (min-width: 768px) {
-            header.scrolled .logo {
+            .logo {
                 width: 240px;
+            }
+
+            header.scrolled .logo {
+                width: 140px;
             }
         }
 
@@ -188,6 +191,7 @@
     <!-- HEADER -->
     <header>
         <div class="logo-container">
+            <a href="index.html" aria-label="Ride home">
             <svg class="logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <g>
                     <g>
@@ -206,6 +210,7 @@
                     </g>
                 </g>
             </svg>
+            </a>
         </div>
     </header>
 
