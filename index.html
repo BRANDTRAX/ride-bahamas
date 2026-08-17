@@ -277,6 +277,38 @@
             color: #000000;
         }
 
+        .email-input {
+            width: 100%;
+            padding: 16px 20px;
+            background-color: #ffffff;
+            border: 2px solid #00A9CE;
+            border-radius: 6px;
+            color: #000000;
+            font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #FDDA25;
+            box-shadow: 0 0 0 3px rgba(253, 218, 37, 0.2);
+        }
+
+        .email-input::placeholder {
+            color: #999999;
+            font-size: 18px;
+        }
+
+        .hp-field {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+
         .form-submit {
             padding: 16px 28px;
             background: linear-gradient(135deg, #00A9CE, #0088a8);
@@ -525,6 +557,20 @@
             }
         }
     </style>
+<style>
+  .site-footer{border-top:1px solid #1e2226; background:#000; padding:44px 20px 34px; color:#9aa3a7;}
+  .site-footer .foot-wrap{width:100%; max-width:1180px; margin:0 auto;}
+  .site-footer .foot-grid{display:grid; grid-template-columns:1fr; gap:30px; text-align:center;}
+  .site-footer .addr{font-style:normal; font-size:.9rem; color:#9aa3a7; line-height:1.7;}
+  .site-footer .addr a{color:#00a9ce; text-decoration:none;}
+  .site-footer .foot-h{font-weight:800; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:#9aa3a7; margin:0 0 12px;}
+  .site-footer .foot-links{list-style:none; padding:0; margin:0;}
+  .site-footer .foot-links li{margin-bottom:9px;}
+  .site-footer .foot-links a{text-decoration:none; font-size:.93rem; color:#cfd6da;}
+  .site-footer .foot-links a:hover{color:#00a9ce;}
+  .site-footer .foot-bottom{border-top:1px solid #1e2226; margin-top:34px; padding-top:20px; text-align:center; font-size:.78rem; color:#9aa3a7;}
+  @media(min-width:768px){ .site-footer .foot-grid{grid-template-columns:1.6fr 1fr 1fr; gap:40px; text-align:left;} }
+</style>
 </head>
 <body>
 
@@ -565,11 +611,23 @@
                         <h2>We're getting ready to move the islands. <br class="desktop-break">Be first to know.</h2>
 
                         <form id="notifyForm">
+                            <input type="text" name="company" id="company" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                             <div class="form-group">
-                                <input 
-                                    type="tel" 
-                                    id="mobile" 
-                                    name="mobile" 
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="email-input"
+                                    placeholder="Your email address"
+                                    autocomplete="email"
+                                    required
+                                >
+                            </div>
+                            <div class="form-group">
+                                <input
+                                    type="tel"
+                                    id="mobile"
+                                    name="mobile"
                                     placeholder="Your mobile number"
                                     required
                                 >
@@ -627,23 +685,38 @@
     </section>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms &amp; Conditions</a>
-                <a href="/cookies">Cookie Policy</a>
-            </div>
-
-            <div class="footer-info">
-                <p><strong>RIDE &copy; 2026</strong></p>
-                <p>Ride Bahamas Limited<br>
-                Shirlaw House, Shirley Street<br>
-                Nassau, New Providence, Bahamas<br>
-                <a href="tel:+12423954669" style="color:#00A9CE;text-decoration:none;">+1 (242) 395 4669</a><br>
-                info@ride.bs</p>
-            </div>
+        <footer class="site-footer">
+      <div class="foot-wrap">
+        <div class="foot-grid">
+          <div>
+            <address class="addr">
+              Ride Bahamas Limited<br>
+              Shirlaw House, Shirley Street<br>
+              P.O. Box N-4839<br>
+              Nassau, New Providence, Bahamas<br><br>
+              <a href="mailto:info@ride.bs">info@ride.bs</a><br>
+              <a href="tel:+12423954669">+1 (242) 395 4669</a>
+            </address>
+          </div>
+          <div>
+            <p class="foot-h">Legal</p>
+            <ul class="foot-links">
+              <li><a href="/privacy/">Privacy Policy</a></li>
+              <li><a href="/terms/">Terms and Conditions</a></li>
+              <li><a href="/cookies/">Cookie Policy</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="foot-h">Ride network</p>
+            <ul class="foot-links">
+              <li><a href="https://ride.bs">ride.bs</a></li>
+              <li><a href="https://ridemobility.app">ridemobility.app</a></li>
+              <li><a href="https://ride.partners">ride.partners</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="foot-bottom">© 2026 Ride Bahamas Limited. All rights reserved.</div>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.2/build/js/intlTelInput.min.js"></script>
@@ -689,7 +762,26 @@
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
 
+            // Honeypot: bots fill the hidden field. Fake success, do not store.
+            if (document.getElementById('company').value) {
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                return;
+            }
+
+            const email = document.getElementById('email').value.trim();
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            if (!emailValid) {
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.classList.add('error');
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+                return;
+            }
+
             const formData = {
+                source: 'ride.bs',
+                email: email,
                 mobile: iti.getNumber() || document.getElementById('mobile').value,
                 country: iti.getSelectedCountryData().name || '',
                 timestamp: new Date().toLocaleString()
