@@ -568,7 +568,7 @@
   .site-footer .foot-links li{margin-bottom:9px;}
   .site-footer .foot-links a{text-decoration:none; font-size:.93rem; color:#cfd6da;}
   .site-footer .foot-links a:hover{color:#00a9ce;}
-  .site-footer .foot-bottom{border-top:1px solid #1e2226; margin-top:34px; padding-top:20px; text-align:center; font-size:.78rem; color:#9aa3a7;}
+  .site-footer .foot-bottom{border-top:1px solid #1e2226; margin-top:34px; padding-top:20px; text-align:center; font-size:.78rem; color:#9aa3a7; display:flex; flex-direction:column; gap:10px;} @media(min-width:768px){.site-footer .foot-bottom{flex-direction:row; justify-content:space-between; text-align:left; gap:24px;}}
   @media(min-width:768px){ .site-footer .foot-grid{grid-template-columns:1.6fr 1fr 1fr; gap:40px; text-align:left;} }
 </style>
 </head>
@@ -715,7 +715,7 @@
             </ul>
           </div>
         </div>
-        <div class="foot-bottom">© 2026 Ride Bahamas Limited. All rights reserved.</div>
+        <div class="foot-bottom"><span>© 2026 Ride Bahamas Limited.</span><span>All rights reserved. Ride Bahamas Limited is a locally licensed transport operator.</span></div>
       </div>
     </footer>
 
