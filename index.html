@@ -572,21 +572,21 @@
           .hero-content .hero-car{order:-1; width:100%; min-height:0; display:flex; justify-content:center; align-items:center; overflow:visible; margin:0;}
           .hero-content .hero-car img{width:auto; max-width:300px; height:auto;}
           .hero-body{width:100%; max-width:420px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:16px;}
-          .hero-body > h1{margin:0;}
-          .form-container{width:100%; display:flex; flex-direction:column; align-items:center; gap:14px;}
+          .hero-body h1{font-size:56px; line-height:1.1; letter-spacing:-1px; margin:0;}
+          .form-container{width:100%; margin:0; padding:0; display:flex; flex-direction:column; align-items:center; gap:14px;}
           .form-container h2{margin:0;}
-          .app-stores{display:flex; flex-direction:column; align-items:center; gap:12px; margin:0; width:auto;}
+          .hero-content .app-stores{display:flex; flex-direction:column; align-items:center; gap:12px; margin:0; width:auto;}
           .hero-qr{margin:0;}
         }
         @media (min-width: 768px){
-          .hero-content{display:flex; flex-direction:row; align-items:center; justify-content:center; gap:56px; text-align:left; max-width:1080px; margin:0 auto; width:100%;}
-          .hero-content .hero-body{order:1; flex:1 1 0; max-width:460px; display:flex; flex-direction:column; align-items:flex-start; gap:18px;}
-          .hero-content .hero-car{order:2; flex:0 0 auto; min-height:0; margin:0;}
-          .hero-content .hero-car img{width:100%; max-width:460px; height:auto;}
-          .hero-body > h1{margin:0;}
-          .form-container{width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:14px;}
-          .form-container h2{margin:0;}
-          .app-stores{display:flex; flex-direction:row; justify-content:flex-start; gap:14px; margin:0;}
+          .hero-content{display:flex; flex-direction:row; align-items:center; justify-content:center; gap:48px; text-align:left; max-width:1040px; margin:0 auto; width:100%;}
+          .hero-content .hero-body{order:1; flex:0 0 480px; width:480px; display:flex; flex-direction:column; align-items:flex-start; gap:20px;}
+          .hero-content .hero-car{order:2; flex:0 0 420px; width:420px; min-height:0; display:flex; align-items:center; justify-content:center; margin:0;}
+          .hero-content .hero-car img{width:100%; max-width:420px; height:auto;}
+          .hero-body h1{font-size:72px; line-height:1.05; letter-spacing:-1px; margin:0;}
+          .hero-body .form-container{width:100%; margin:0; padding:0; display:flex; flex-direction:column; align-items:flex-start; gap:14px;}
+          .hero-body .form-container h2{margin:0;}
+          .hero-content .app-stores{display:flex; flex-direction:row; justify-content:flex-start; gap:14px; margin:0; flex-wrap:nowrap;}
           .hero-qr{margin:0;}
           #notifyForm{max-width:420px;}
         }
